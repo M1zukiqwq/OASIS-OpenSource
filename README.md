@@ -1,4 +1,4 @@
-# OASIS — Repairing Stale and Correlation-Blind Optimizer Statistics from Query Feedback
+# OASIS — Repairing Stale and Correlation-Blind Query-Optimizer Statistics from Query Feedback
 
 Code and trained checkpoints accompanying the paper. OASIS is a **training-free
 feedback-projection** system that maintains a query optimizer's statistics from
