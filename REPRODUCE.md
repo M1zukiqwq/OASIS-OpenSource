@@ -51,6 +51,20 @@ python crosscol_feedback_experiment.py     # self-contained (numpy only)
 # -> results/crosscol_feedback_v1/{summary.csv, table_crosscol_feedback.tex}
 ```
 
+### Table: cross-column repair on the Join Order Benchmark (`tab:crosscol_job`) — real PostgreSQL
+Requires PostgreSQL (>=10) + the JOB/IMDB dataset; full setup notes in
+`experiments/job_imdb/README.md`.
+```bash
+cd experiments/job_imdb
+# load IMDB into an 'imdb' database (point at your psql + the <table>.dat files)
+PSQL_BIN=/path/to/psql PGHOST=/tmp PGPORT=5432 IMDB_DAT_DIR=/path/to/imdb_dat ./load_imdb.sh
+# run: PG-default vs PG-extended-stats vs AVI (true marginals) vs OASIS feedback joint
+PSQL_BIN=/path/to/psql PGHOST=/tmp PGPORT=5432 python3 crosscol_pg_inject_experiment.py
+# -> results_pg_inject/summary.json
+```
+The honest cross-column effect is the **AVI→OASIS** reduction (same true marginals, only the
+joint differs); no trained prior is needed (the repair is the training-free IPF projection).
+
 ### Downstream: composition family and FactorJoin (inline numbers, § Downstream consumption)
 ```bash
 cd experiments
