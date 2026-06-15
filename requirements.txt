@@ -1,19 +1,12 @@
-# OASIS artifact — Python dependencies.
-# Developed and tested with Python 3.9. The exact versions used to produce the
-# paper's numbers are pinned below.
+# OASIS reproduction environment — Python 3.9 (tested on 3.9.6).
+#
+# Core: single-column max-entropy projection, cross-column IPF repair, and the
+# (baseline-only) learned-prior training / inference.
 numpy==2.0.2
 scipy==1.13.1
 torch==2.8.0
-matplotlib            # only needed to re-render the figures; any recent 3.x works
 
-# System dependencies (NOT installable via pip):
-# - PostgreSQL 16.9 — required ONLY for the planner-injection experiments
-#   (paper Section 6.2.3 and the sparse sweep) and the TPC-H runtime check
-#   (Section 6.2.4). The cluster paths/port the scripts expect are documented in
-#   experiments/REPRODUCE.md. Every other experiment is pure Python and needs no
-#   database; you can also verify those results from the committed outputs
-#   without running anything (see "Verifying without re-running" in REPRODUCE.md).
-#
-# The trained Stage-1 prior checkpoint is included at
-# experiments/oasis_torch/artifacts/ckpt_v3_it3.pt, and the v3 (composite-
-# objective) results are produced through experiments/oasis_torch/run_v3.py.
+# The PostgreSQL planner/runtime experiments additionally require a local
+# PostgreSQL 16 install — they shell out to the `psql` binary, so NO Python
+# database driver is needed. The TPC-H runtime experiment also needs a
+# `tpch-kit` checkout (for `dbgen`). See REPRODUCE.md for details.

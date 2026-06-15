@@ -4,15 +4,17 @@
 # Persists pre-drift quantiles so the runtime experiment can reconstruct the
 # "stale" histogram after the drift has been applied.
 set -euo pipefail
-B=/home/tianqc/deps/install/bin
-export LD_LIBRARY_PATH=/home/tianqc/deps/install/lib
-PORT=55432
-DB=tpch
-SOCK=/home/tianqc/oasis_pg/run
-KIT=/home/tianqc/tpch-kit
-DATA=/home/tianqc/oasis_runtime/tpch_data
+# Point these at YOUR PostgreSQL + TPC-H kit. Defaults assume a local source build;
+# override via env, e.g.  PG_BIN=/usr/lib/postgresql/16/bin TPCH_KIT=~/tpch-kit ./tpch_setup_drift.sh
+B="${PG_BIN:-/usr/local/pgsql/bin}"                  # dir containing psql
+export LD_LIBRARY_PATH="${PG_LIB:-$B/../lib}"
+PORT="${PGPORT:-55432}"
+DB="${PGDATABASE:-tpch}"
+SOCK="${PGHOST:-/tmp}"                                # PG socket dir (or hostname)
+KIT="${TPCH_KIT:?set TPCH_KIT to your tpch-kit checkout (has dbgen)}"
+DATA="${TPCH_DATA:-./tpch_data}"
 SF=${SF:-10}
-PSQL="$B/psql -h $SOCK -p $PORT -U tianqc -d $DB -v ON_ERROR_STOP=1"
+PSQL="$B/psql -h $SOCK -p $PORT -U ${PGUSER:-$(whoami)} -d $DB -v ON_ERROR_STOP=1"
 
 echo "=== [1/6] generate TPC-H SF$SF (dbgen) $(date) ==="
 mkdir -p "$DATA"
