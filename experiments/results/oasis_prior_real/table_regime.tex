@@ -1,0 +1,19 @@
+\begin{table}[t]
+  \centering\small
+  \caption{Learned prior versus the ISOMER projection on real held-out columns as output
+  resolution $B$ grows (residual prior, three seeds; geometric-mean Q-error on held-out range
+  predicates; a positive number means the learned prior beats the projection by that fraction).
+  The edge appears only once $B$ reaches the grid, and only at sparse feedback.}
+  \label{tab:regime}
+  \setlength{\tabcolsep}{10pt}
+  \begin{tabular}{c r r r}
+    \toprule
+    Output buckets $B$ & $K{=}2$ & $K{=}6$ & $K{=}16$ \\
+    \midrule
+    $10$ (model default) & $-1.3\%$ & $-2.9\%$ & $-1.9\%$ \\
+    $16$ & $+0.2\%$ & $-1.8\%$ & $-1.5\%$ \\
+    $24$ & $+1.0\%$ & $-1.1\%$ & $-1.2\%$ \\
+    $32$ (grid) & $\mathbf{+1.4\%}$ & $-0.8\%$ & $-1.1\%$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}

@@ -1,0 +1,22 @@
+\begin{table}[t]
+  \centering\small
+  \caption{Downstream propagation. Geometric-mean Q-error of two histogram consumers when fed
+  the stale, ISOMER-corrected, and learned-prior-corrected ($B{=}32$) marginals on real columns
+  (lower is better). ``ours vs.\ ISOMER'' is the learned prior's reduction over the projection;
+  AVI$^\ast$ uses the true marginals and is the independence ceiling.}
+  \label{tab:downstream}
+  \setlength{\tabcolsep}{6pt}
+  \begin{tabular}{l c r r r r r}
+    \toprule
+    Downstream consumer & $K$ & stale & ISOMER & OASIS & AVI$^\ast$ & ours vs.\ ISOMER \\
+    \midrule
+    \multirow{3}{*}{AVI two-column join} &  $2$  & $1.975$ & $1.807$ & $1.763$ & $1.562$ & $+2.4\%$ \\
+    &  $6$  & $2.017$ & $1.686$ & $1.645$ & $1.558$ & $+2.4\%$ \\
+    & $16$  & $1.999$ & $1.623$ & $1.593$ & $1.561$ & $+1.8\%$ \\
+    \addlinespace[2pt]
+    \multirow{3}{*}{Self-join $\sum_i h_i^2$} &  $2$  & $1.310$ & $1.225$ & $1.192$ & --- & $+2.7\%$ \\
+    &  $6$  & $1.314$ & $1.123$ & $1.110$ & --- & $+1.1\%$ \\
+    & $16$  & $1.310$ & $1.064$ & $1.051$ & --- & $+1.2\%$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}

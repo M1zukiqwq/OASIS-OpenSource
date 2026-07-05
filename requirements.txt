@@ -1,0 +1,12 @@
+# OASIS reproduction environment — Python 3.9 (tested on 3.9.6).
+#
+# Core: single-column max-entropy projection, cross-column IPF repair, and the
+# (baseline-only) learned-prior training / inference.
+numpy==2.0.2
+scipy==1.13.1
+torch==2.8.0
+
+# The PostgreSQL planner/runtime experiments additionally require a local
+# PostgreSQL 16 install — they shell out to the `psql` binary, so NO Python
+# database driver is needed. The TPC-H runtime experiment also needs a
+# `tpch-kit` checkout (for `dbgen`). See REPRODUCE.md for details.
